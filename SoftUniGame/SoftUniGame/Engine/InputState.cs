@@ -270,13 +270,13 @@ namespace SoftUniGame.Engine
         public bool IsZoomOut(PlayerIndex? controllingPlayer)
         {
             PlayerIndex playerIndex;
-            return IsNewKeyPress(Keys.OemPeriod, controllingPlayer, out playerIndex);
+            return IsNewKeyPress(Keys.Subtract, controllingPlayer, out playerIndex);
         }
 
         public bool IsZoomIn(PlayerIndex? controllingPlayer)
         {
             PlayerIndex playerIndex;
-            return IsNewKeyPress(Keys.OemComma, controllingPlayer, out playerIndex);
+            return IsNewKeyPress(Keys.Add, controllingPlayer, out playerIndex);
         }
     }
 }
