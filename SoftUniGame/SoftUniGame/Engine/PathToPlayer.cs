@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using RogueSharp;
 using System.Linq;
 
-
 namespace SoftUniGame.Engine
 {
     public class PathToPlayer
