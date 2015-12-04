@@ -2,18 +2,12 @@
 
 namespace SoftUniGame.Engine
 {
-    public enum GameStates
-    {
-        None = 0,
-        PlayerTurn = 1,
-        EnemyTurn = 2,
-        Debugging = 3
-    }
+    
     public class Global
     {      
         public static readonly IRandom Random = new DotNetRandom();
         public static readonly Camera Camera = new Camera();
-        public static GameStates GameState { get; set; }
+        public static GameStates.States GameState { get; set; }
         public static CombatManager CombatManager;
         public static readonly int MapWidth = 50;
         public static readonly int MapHeight = 30;

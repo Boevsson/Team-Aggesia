@@ -53,6 +53,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Engine\GameStates.cs" />
     <Compile Include="Models\Figures\Enemies\AggressiveEnemy.cs" />
     <Compile Include="Engine\Camera.cs" />
     <Compile Include="Engine\CombatManager.cs" />

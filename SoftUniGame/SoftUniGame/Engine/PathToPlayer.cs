@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RogueSharp;
 using System.Linq;
+using SoftUniGame.Engine;
 
 namespace SoftUniGame.Engine
 {
@@ -35,7 +36,7 @@ namespace SoftUniGame.Engine
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (_cells != null && Global.GameState == GameStates.Debugging)
+            if (_cells != null && Global.GameState == GameStates.States.Debugging)
             {
                 foreach (Cell cell in _cells.Steps)
                 {

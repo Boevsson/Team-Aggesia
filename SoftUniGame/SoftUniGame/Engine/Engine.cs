@@ -2,11 +2,11 @@
 using SoftUniGame.Models.Figures.Players;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using RogueSharp;
 using RogueSharp.DiceNotation;
 using RogueSharp.MapCreation;
 using System.Collections.Generic;
+
 
 namespace SoftUniGame.Engine
 {
@@ -148,7 +148,7 @@ namespace SoftUniGame.Engine
             pathFromAggressiveEnemy.CreateFrom(startingCell.X, startingCell.Y);
             AddAggressiveEnemies(10);
             Global.CombatManager = new CombatManager(_player, _aggressiveEnemies);
-            Global.GameState = GameStates.PlayerTurn;
+            Global.GameState = GameStates.States.PlayerTurn;
             
         }
 
@@ -178,31 +178,31 @@ namespace SoftUniGame.Engine
             // New code to handle switching modes when spacebar is pressed
             else if (_inputState.IsSpace(PlayerIndex.One))
             {
-                if (Global.GameState == GameStates.PlayerTurn)
+                if (Global.GameState == GameStates.States.PlayerTurn)
                 {
-                    Global.GameState = GameStates.Debugging;
+                    Global.GameState = GameStates.States.Debugging;
                 }
-                else if (Global.GameState == GameStates.Debugging)
+                else if (Global.GameState == GameStates.States.Debugging)
                 {
-                    Global.GameState = GameStates.PlayerTurn;
+                    Global.GameState = GameStates.States.PlayerTurn;
                 }
             }
             else
             {
-                if (Global.GameState == GameStates.PlayerTurn
+                if (Global.GameState == GameStates.States.PlayerTurn
                     && _player.HandleInput(_inputState, _map))
                 {
                     UpdatePlayerFieldOfView();
                     Global.Camera.CenterOn(_map.GetCell(_player.X, _player.Y));
-                    Global.GameState = GameStates.EnemyTurn;
+                    Global.GameState = GameStates.States.EnemyTurn;
                 }
-                if (Global.GameState == GameStates.EnemyTurn)
+                if (Global.GameState == GameStates.States.EnemyTurn)
                 {
                     foreach (var enemy in _aggressiveEnemies)
                     {
                         enemy.Update();
                     }
-                    Global.GameState = GameStates.PlayerTurn;
+                    Global.GameState = GameStates.States.PlayerTurn;
                 }
             }
             // TODO: Add your update logic here           
@@ -230,12 +230,12 @@ namespace SoftUniGame.Engine
             foreach (Cell cell in _map.GetAllCells())
             {
                 var position = new Vector2(cell.X * Global.SpriteWidth, cell.Y * Global.SpriteHeight);
-                if (!cell.IsExplored && Global.GameState != GameStates.Debugging)
+                if (!cell.IsExplored && Global.GameState != GameStates.States.Debugging)
                 {
                     continue;
                 }
                 Color tint = Color.White;
-                if (!cell.IsInFov && Global.GameState != GameStates.Debugging)
+                if (!cell.IsInFov && Global.GameState != GameStates.States.Debugging)
                 {
                     tint = Color.Gray;
                 }
@@ -254,7 +254,7 @@ namespace SoftUniGame.Engine
 
             foreach (var enemy in _aggressiveEnemies)  //Draw Aggresive enemies
             {                
-                if (Global.GameState == GameStates.Debugging || _map.IsInFov(enemy.X, enemy.Y))
+                if (Global.GameState == GameStates.States.Debugging || _map.IsInFov(enemy.X, enemy.Y))
                 {
                     enemy.Draw(spriteBatch);
                 }
